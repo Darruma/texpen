@@ -1,0 +1,26 @@
+{
+  "name": "texpen",
+  "version": "1.0.0",
+  "description": "A codpen like text editor for latex documents",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "cd frontend && npm install  && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Darruma/texpen.git"
+  },
+  "author": "Darruma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Darruma/texpen/issues"
+  },
+  "homepage": "https://github.com/Darruma/texpen#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.0",
+    "randomstring": "^1.1.5"
+  }
+}

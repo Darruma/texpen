@@ -1,0 +1,49 @@
+.container
+{
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+}
+.editor-container
+{
+    display: flex;
+    height: 98vh;
+    justify-content: flex-end;
+}
+
+.editor-view
+{
+    border: 1px solid darkgrey;
+    font-size: 15px;
+    word-wrap:break-word;
+    padding: 20px;
+    width: 60vw;
+    overflow: auto;
+}
+.editor-box
+{
+    border: 1px solid darkgrey;
+}
+.tex-title
+{
+    text-align: center;
+}
+.editor-input
+{
+    font-size: 15px;
+    resize:none;
+    padding: 20px;
+    box-sizing: border-box; 
+    width: 40vw;
+}
+.editor-settings
+{
+    width:20vw;
+}
+.inline-text
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+}
+

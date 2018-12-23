@@ -9,30 +9,16 @@ class Editor extends Component {
         title: [],
         content: [],
         rendered: [],
-        title:'Default',
-        timeout: null
+        title: 'Default',
+        input: ''
     }
     render() {
         return (
             <div className='container'>
-                <header className='editor-header'>
-                <div className='editor-header-button' onClick={this.handleSettingsModal}>
-                    Settings
-                </div>
-                <div className='editor-header-button'>
-                    New
-                </div>
-                <div className='editor-header-button'>
-                    Save
-                </div>
-                <div className='editor-header-button' onClick={this.uploadContent}>
-                    Upload
-                </div>
 
-               
-                </header>
                 <div className='editor-container'>
-                    <textarea className='editor-box editor-input' onChange={this.onTextChange}>
+                    <div className='editor-settings editor-box'></div>
+                    <textarea className='editor-box editor-input' value={this.state.input} onChange={this.onTextChange}>
                     </textarea>
                     <View title={this.state.title} data={this.state.rendered}></View>
                 </div>
@@ -41,58 +27,49 @@ class Editor extends Component {
 
     onTextChange = (e) => {
         e.preventDefault();
+        this.setState({ input: e.target.value })
         this.setState({ content: e.target.value.split("\n") });
-        clearTimeout(this.state.timeout)
-        this.setState({
-            timeout: setTimeout(() => {
-                this.parseTex();
-            }, 750)
-        })
+        this.parseTex()
 
     }
 
-    handleSettingsModal = (e) =>
-    {
+    handleSettingsModal = (e) => {
         e.preventDefault()
     }
-    uploadContent = () =>
-    {
+    uploadContent = () => {
         fetch('api/editor/upload', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
             },
             body: JSON.stringify({
-                id:'someid',
-                title:this.state.title,
-                latex:this.state.content
+                title: this.state.title,
+                latex: this.state.content,
+                input:this.state.input
             })
         });
     }
-    componentDidMount()
-    {
-      var id = this.props.match.params.id;
-      if(id)
-      {
-          // fetch editor data
-          fetch('/api/editor/' + id)
-          .then(res => res.json())
-          .then(res =>
-            {
-                if (res.success)
-                {
-                    this.setState({
-                        title:res.title,
-                        content:res.latex
-                    })
-                }
-                else{
-                // Show modal / redirect
-                }
-            })
-      }
+    componentDidMount() {
+        var id = this.props.match.params.id;
+        // fetch('/api/editor/' + id)
+        //     .then(res => res.json())
+        //     .then(res => {
+        //         console.log(res)
+        //         if (res.success) {
+        //             this.setState({
+        //                 title: res.title,
+        //                 content: res.latex,
+        //                 input:res.input
+        //             }, () => {
+        //                     this.parseTex()
+        //                 })
+
+        //         }
+        //         else {
+        //         }
+        //     })
     }
-    parseTex = (e) => {
+    parseTex = () => {
         var equation_content = []
         for (var i = 0; i < this.state.content.length; i++) {
 

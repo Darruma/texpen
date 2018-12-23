@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@matejmazur/react-katex": "^3.0.2",
+    "katex": "^0.10.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
@@ -15,6 +16,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:3005",
   "eslintConfig": {
     "extends": "react-app"
   },

@@ -6,7 +6,7 @@ class View extends Component
     render()
     {
         return(<div className='editor-box editor-view'>
-        <div>{this.props.title}</div>
+        <div className='tex-title'>{this.props.title}</div>
         {
             this.props.data.map(element =>
                 {
