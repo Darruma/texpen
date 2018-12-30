@@ -26,11 +26,15 @@ class Editor extends Component {
     }
 
     onTextChange = (e) => {
+        console.log('text changed')
         e.preventDefault();
+        console.log(e.target.value)
         this.setState({ input: e.target.value })
-        this.setState({ content: e.target.value.split("\n") });
-        this.parseTex()
-
+        this.setState({ content: e.target.value.split("\n") },()=>
+        {
+            this.parseTex()
+        });
+        
     }
 
     handleSettingsModal = (e) => {
@@ -117,7 +121,6 @@ class Editor extends Component {
                         if (in_text) {
                             j = currentIndex - 1
                             var inline_classname = (this.state.content[i - 1] == "") ? 'inline-text' : ""
-                            console.log(inline_classname)
                             equation_content.push(
                                 {
                                     type: 'inline_text',

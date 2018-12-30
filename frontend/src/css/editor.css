@@ -7,13 +7,12 @@
 .editor-container
 {
     display: flex;
-    height: 98vh;
+    height: 100vh;
     justify-content: flex-end;
 }
 
 .editor-view
 {
-    border: 1px solid darkgrey;
     font-size: 15px;
     word-wrap:break-word;
     padding: 20px;
@@ -23,6 +22,7 @@
 .editor-box
 {
     border: 1px solid darkgrey;
+
 }
 .tex-title
 {
@@ -32,6 +32,8 @@
 {
     font-size: 15px;
     resize:none;
+    overflow: auto;
+    outline: none;
     padding: 20px;
     box-sizing: border-box; 
     width: 40vw;
