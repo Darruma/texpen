@@ -55,23 +55,23 @@ class Editor extends Component {
     }
     componentDidMount() {
         var id = this.props.match.params.id;
-        // fetch('/api/editor/' + id)
-        //     .then(res => res.json())
-        //     .then(res => {
-        //         console.log(res)
-        //         if (res.success) {
-        //             this.setState({
-        //                 title: res.title,
-        //                 content: res.latex,
-        //                 input:res.input
-        //             }, () => {
-        //                     this.parseTex()
-        //                 })
+        fetch('/api/editor/' + id)
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+                if (res.success) {
+                    this.setState({
+                        title: res.title,
+                        content: res.latex,
+                        input:res.input
+                    }, () => {
+                            this.parseTex()
+                        })
 
-        //         }
-        //         else {
-        //         }
-        //     })
+                }
+                else {
+                }
+            })
     }
     parseTex = () => {
         var equation_content = []
