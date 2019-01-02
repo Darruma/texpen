@@ -9,7 +9,7 @@ class Editor extends Component {
     state = {
         content: [],
         rendered: [],
-        title: 'Default',
+        title: '',
         input: ''
     }
     render() {
@@ -18,8 +18,18 @@ class Editor extends Component {
 
                 <div className='editor-container'>
                    <Settings title={this.state.title} input={this.state.input} updateTitle={this.handleTitleChange} ></Settings>
+                   <div className='input'>
+                    <div className='line-numbers'>
+                    {Array(46).fill(0).map((element, index) =>
+                        {
+                            return <div className='line-number'>{index + 1} </div>
+                        }
+                    )}
+                    </div>
                     <textarea className='editor-box editor-input' value={this.state.input} onChange={this.onTextChange}>
                     </textarea>
+
+                    </div>
                     <View title={this.state.title} data={this.state.rendered}></View>
                 </div>
             </div>)
@@ -91,7 +101,10 @@ class Editor extends Component {
             else {
                 // Parse inline text here
                 var paragraph = this.state.content[i];
-
+                var paragraph_elements = {
+                    type:'paragraph',
+                    values:[]
+                }
                 for (var j = 0; j < paragraph.length; j++) {
                     var currentIndex = j
                     if (paragraph[currentIndex] == '$') {
@@ -104,7 +117,7 @@ class Editor extends Component {
                         }
                         if (eq_text) {
                             j = currentIndex
-                            equation_content.push(
+                            paragraph_elements.values.push(
                                 {
                                     type: 'inline_equation',
                                     value: <TeX>{eq_text}</TeX>
@@ -123,7 +136,7 @@ class Editor extends Component {
                         if (in_text) {
                             j = currentIndex - 1
                             var inline_classname = (this.state.content[i - 1] == "") ? 'inline-text' : ""
-                            equation_content.push(
+                            paragraph_elements.values.push(
                                 {
                                     type: 'inline_text',
                                     value: <span className={inline_classname}>{in_text}</span>
@@ -132,6 +145,7 @@ class Editor extends Component {
                         }
                     }
                 }
+                equation_content.push(paragraph_elements)
 
             }
         }

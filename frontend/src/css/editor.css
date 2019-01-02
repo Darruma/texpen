@@ -22,6 +22,8 @@
     padding: 20px;
     width: 60vw;
     overflow: auto;
+    font-family: 'Nunito', sans-serif;
+
 }
 .editor-box
 {
@@ -32,6 +34,7 @@
 {
     text-align: center;
     font-size: 30px;
+    font-family: 'Nunito', sans-serif;
 }
 
 .editor-input
@@ -43,15 +46,16 @@
     padding: 20px;
     box-sizing: border-box; 
     width: 40vw;
+    font-family: 'Nunito', sans-serif;
+    
 }
 .editor-settings
 {
     width:20vw;
+    font-family: 'Nunito', sans-serif;
 }
 .inline-text
 {
-    margin-top: 10px;
-    margin-bottom: 10px;
     display: block;
 }
 .title-input
@@ -74,6 +78,23 @@
     height: 40px;
     font-family: Courier New;
     font-size: 20px;
-    background: #3498db;
     margin-top: 30px;
+}
+.input
+{
+    display: flex;
+    flex-direction: row;
+}
+.line-numbers
+{
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    
+}
+.line-number
+{
+    font-family: 'Nunito', sans-serif;
+    text-align: right;
+    font-size: 15px;
 }
