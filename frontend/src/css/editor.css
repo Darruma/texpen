@@ -11,6 +11,10 @@
     justify-content: flex-end;
 }
 
+.clipboard 
+{
+    margin-top: 20px;
+}
 .editor-view
 {
     font-size: 15px;
@@ -27,7 +31,9 @@
 .tex-title
 {
     text-align: center;
+    font-size: 30px;
 }
+
 .editor-input
 {
     font-size: 15px;
@@ -48,4 +54,26 @@
     margin-bottom: 10px;
     display: block;
 }
-
+.title-input
+{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+.title-input-block
+{
+    text-align: center;
+}
+.title
+{
+    text-align: center;
+}
+.save
+{
+    width: 200px;
+    height: 40px;
+    font-family: Courier New;
+    font-size: 20px;
+    background: #3498db;
+    margin-top: 30px;
+}

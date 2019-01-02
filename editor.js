@@ -4,6 +4,7 @@ const randomstring = require('randomstring')
 const Post = require('./models/Post')
 router.get('/editor/:url', (req, res) => {
     const url = req.params.url;
+    console.log(url)
     Post.find({
         url: url
     },
@@ -27,8 +28,8 @@ router.get('/editor/:url', (req, res) => {
                 const post = posts[0]
                 return res.json(
                     {
+                        success:true,
                         title:post.title,
-                        latex:post.content,
                         input:post.text_box_input
                     }
                 )
@@ -40,7 +41,6 @@ router.get('/editor/:url', (req, res) => {
 
 router.post('/editor/upload', (req, res) => {
     const uploadData = req.body;
-    console.log(uploadData)
     const { title } = uploadData;
     const { input } = uploadData;
     var p = new Post();

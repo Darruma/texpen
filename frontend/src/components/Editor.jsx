@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import EquationBlock from './EquationBlock'
+import Settings from './Settings'
 import View from './View'
 import 'katex/dist/katex.min.css';
 import '../css/editor.css'
 import TeX from '@matejmazur/react-katex';
 class Editor extends Component {
     state = {
-        title: [],
         content: [],
         rendered: [],
         title: 'Default',
@@ -17,7 +17,7 @@ class Editor extends Component {
             <div className='container'>
 
                 <div className='editor-container'>
-                    <div className='editor-settings editor-box'></div>
+                   <Settings title={this.state.title} input={this.state.input} updateTitle={this.handleTitleChange} ></Settings>
                     <textarea className='editor-box editor-input' value={this.state.input} onChange={this.onTextChange}>
                     </textarea>
                     <View title={this.state.title} data={this.state.rendered}></View>
@@ -26,9 +26,7 @@ class Editor extends Component {
     }
 
     onTextChange = (e) => {
-        console.log('text changed')
         e.preventDefault();
-        console.log(e.target.value)
         this.setState({ input: e.target.value })
         this.setState({ content: e.target.value.split("\n") },()=>
         {
@@ -36,7 +34,10 @@ class Editor extends Component {
         });
         
     }
-
+    handleTitleChange = (value) =>
+    {
+        this.setState({title:value});
+    }
     handleSettingsModal = (e) => {
         e.preventDefault()
     }
@@ -58,12 +59,13 @@ class Editor extends Component {
         fetch('/api/editor/' + id)
             .then(res => res.json())
             .then(res => {
-                console.log(res)
                 if (res.success) {
+                console.log(res)
+                    
                     this.setState({
                         title: res.title,
-                        content: res.latex,
-                        input:res.input
+                        input:res.input,
+                        content:res.input.split("\n") 
                     }, () => {
                             this.parseTex()
                         })
