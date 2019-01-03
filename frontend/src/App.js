@@ -8,6 +8,7 @@ class App extends Component {
       <div className="App">
 			<Router >
 					<Route path= '/:id?' component={Editor}/>
+          <Route path='/view/:id' component={View}></Route>
 			</Router>
       </div>
     );
