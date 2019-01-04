@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../css/editor.css'
 import 'katex/dist/katex.min.css';
+import parser from '../texParser';
 import View from './View'
 class Page extends Component {
     state = {
@@ -8,8 +9,8 @@ class Page extends Component {
         page_title: ''
     }
     render() {
-        return (<div>
-            <View data={this.state.page_data} title={this}></View>
+        return (<div className='page'>
+            <View data={this.state.page_data} title={this.state.page_title}></View>
         </div>)
     }
     componentWillMount = () => {
@@ -17,11 +18,12 @@ class Page extends Component {
         fetch('/api/editor/' + id)
             .then(res => res.json())
             .then(res => {
+                console.log(res)
                 if (res.success) {
                     this.setState({
-                        page_data: res.title,
-                        page_input: res.input
-                    })
+                        page_title: res.title,
+                        page_data: parser(res.input.split("\n"))
+                    },() => console.log(this.state))
                 }
                 else {
                 }

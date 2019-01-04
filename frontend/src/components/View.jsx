@@ -10,7 +10,8 @@ class View extends Component {
         title:''   
     }
     render() {
-        return (<div className='editor-box editor-view'>
+        var editor_view = (this.props.coupled_view) ? 'editor-view-coupled' : 'editor-view-page';
+        return (<div className={editor_view}>
             <div className='tex-title'>{this.props.title}</div>
             {
                 this.props.data.map(element => {

@@ -12,24 +12,23 @@ class Editor extends Component {
         input: ''
     }
     render() {
+        
         return (
             <div className='container'>
 
                 <div className='editor-container'>
-                   <Settings title={this.state.title} input={this.state.input} updateTitle={this.handleTitleChange} ></Settings>
-                   <div className='input'>
-                    <div className='line-numbers'>
-                    {Array(46).fill(0).map((element, index) =>
-                        {
-                            return <div className='line-number'>{index + 1} </div>
-                        }
-                    )}
+                    <Settings title={this.state.title} input={this.state.input} updateTitle={this.handleTitleChange} ></Settings>
+                    <div className='input'>
+                        <div className='line-numbers'>
+                            {Array(45).fill(0).map((element, index) => {
+                                return <div className='line-number'>{index + 1} </div>
+                            }
+                            )}
+                        </div>
+                        <textarea className='editor-box editor-input' value={this.state.input} onChange={this.onTextChange}>
+                        </textarea>
                     </div>
-                    <textarea className='editor-box editor-input' value={this.state.input} onChange={this.onTextChange}>
-                    </textarea>
-
-                    </div>
-                    <View title={this.state.title} lone_view={false} data={this.state.rendered}></View>
+                        <View title={this.state.title} coupled_view={true} data={this.state.rendered}></View>
                 </div>
             </div>)
     }
@@ -37,15 +36,13 @@ class Editor extends Component {
     onTextChange = (e) => {
         e.preventDefault();
         this.setState({ input: e.target.value })
-        this.setState({ content: e.target.value.split("\n") },()=>
-        {
-            this.setState({rendered:parser(this.state.content)})
+        this.setState({ content: e.target.value.split("\n") }, () => {
+            this.setState({ rendered: parser(this.state.content) })
         });
-        
+
     }
-    handleTitleChange = (value) =>
-    {
-        this.setState({title:value});
+    handleTitleChange = (value) => {
+        this.setState({ title: value });
     }
     handleSettingsModal = (e) => {
         e.preventDefault()
@@ -59,7 +56,7 @@ class Editor extends Component {
             body: JSON.stringify({
                 title: this.state.title,
                 latex: this.state.content,
-                input:this.state.input
+                input: this.state.input
             })
         });
     }
@@ -71,15 +68,15 @@ class Editor extends Component {
                 if (res.success) {
                     this.setState({
                         title: res.title,
-                        input:res.input,
-                        content:res.input.split("\n"),
-                        rendered:parser(res.input.split("\n"))
+                        input: res.input,
+                        content: res.input.split("\n"),
+                        rendered: parser(res.input.split("\n"))
                     })
                 }
                 else {
                 }
             })
     }
- 
+
 }
 export default Editor

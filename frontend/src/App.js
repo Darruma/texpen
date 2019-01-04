@@ -9,9 +9,9 @@ class App extends Component {
       <div className="App">
 			<Router >
         <Switch>
-					<Route path= '/:id?' component={Editor}/>
+					<Route exact path= '/:id?' component={Editor}/>
           <Route path='/view/:id' component={Page}></Route>
-        </Switch>
+        </Switch> 
 			</Router>
       </div>
     );

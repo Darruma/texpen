@@ -14,11 +14,20 @@
 {
     
 }
+.page
+{
+    padding-left: 20vw;
+    height: 100vh;
+}
+.view
+{
+    display: inline-block;
+}
 .clipboard 
 {
     margin-top: 20px;
 }
-.editor-view
+.editor-view-coupled
 {
     font-size: 15px;
     word-wrap:break-word;
@@ -26,12 +35,10 @@
     width: 60vw;
     overflow: auto;
     font-family: 'Nunito', sans-serif;
-
 }
 .editor-box
 {
     border: 1px solid darkgrey;
-
 }
 .tex-title
 {
