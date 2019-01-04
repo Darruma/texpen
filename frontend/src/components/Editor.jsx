@@ -69,16 +69,12 @@ class Editor extends Component {
             .then(res => res.json())
             .then(res => {
                 if (res.success) {
-                console.log(res)
-                    
                     this.setState({
                         title: res.title,
                         input:res.input,
-                        content:res.input.split("\n") 
-                    }, () => {
-                            this.setState({rendered:parser(this.state.content)})
-                        })
-
+                        content:res.input.split("\n"),
+                        rendered:parser(res.input.split("\n"))
+                    })
                 }
                 else {
                 }

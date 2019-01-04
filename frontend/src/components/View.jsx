@@ -5,6 +5,10 @@ import EquationBlock from './EquationBlock'
 import TeX from '@matejmazur/react-katex';
 
 class View extends Component {
+    state = {
+        data:[],
+        title:''   
+    }
     render() {
         return (<div className='editor-box editor-view'>
             <div className='tex-title'>{this.props.title}</div>
@@ -14,7 +18,7 @@ class View extends Component {
                         return (<EquationBlock value={element.value}></EquationBlock>)
                     }
                     else if (element.type == 'image') {
-                        return (<img className='image ' src={this.state.content[i + 1]}></img>)
+                        return (<img className='image ' src={element.value}></img>)
                     }
                     else if (element.type == 'paragraph') {
                         if (element.values.length == 0) {
@@ -24,7 +28,7 @@ class View extends Component {
                             return (<div className='paragraph'>
                                 {element.values.map((el) => {
                                     if (el.type == 'inline_equation') {
-                                        return (<Tex>{el.value}</Tex>)
+                                        return (<TeX>{el.value}</TeX>)
                                     }
                                     else if (el.type == 'inline_text') {
                                         return (<span className={el.css}>{el.value}</span>)
@@ -38,10 +42,6 @@ class View extends Component {
 
         </div>)
     }
-    componentDidMount = () => {
-        if (this.props.lone_view == true) {
-            console.log('lone')
-        }
-    }
+   
 }
 export default View
