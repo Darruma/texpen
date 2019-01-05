@@ -12,12 +12,16 @@
 }
 .image
 {
-    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 .page
 {
-    padding-left: 20vw;
     height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 .view
 {
@@ -35,6 +39,14 @@
     width: 60vw;
     overflow: auto;
     font-family: 'Nunito', sans-serif;
+}
+.editor-view-page
+{
+    word-wrap: break-word;
+    font-family: 'Nunito', sans-serif;
+    overflow: auto;
+    font-size: 15px;
+    width: 30vw;
 }
 .editor-box
 {

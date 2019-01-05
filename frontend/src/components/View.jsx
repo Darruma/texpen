@@ -19,7 +19,10 @@ class View extends Component {
                         return (<EquationBlock value={element.value}></EquationBlock>)
                     }
                     else if (element.type == 'image') {
-                        return (<img className='image ' src={element.value}></img>)
+                        return (
+                        <div className='image'>
+                        <img src={element.value}></img> 
+                        </div>)
                     }
                     else if (element.type == 'paragraph') {
                         if (element.values.length == 0) {
