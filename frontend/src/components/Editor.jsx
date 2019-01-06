@@ -48,6 +48,12 @@ class Editor extends Component {
         e.preventDefault()
     }
     uploadContent = () => {
+        
+        const pageID = this.props.match.params.id;
+        if(!pageID)
+        {
+            pageID = 'none'
+        }
         fetch('api/editor/upload', {
             method: 'POST',
             headers: {
@@ -56,7 +62,8 @@ class Editor extends Component {
             body: JSON.stringify({
                 title: this.state.title,
                 latex: this.state.content,
-                input: this.state.input
+                input: this.state.input,
+                id:pageID
             })
         });
     }

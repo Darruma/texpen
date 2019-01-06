@@ -6,8 +6,8 @@ import TeX from '@matejmazur/react-katex';
 
 class View extends Component {
     state = {
-        data:[],
-        title:''   
+        data: [],
+        title: ''
     }
     render() {
         var editor_view = (this.props.coupled_view) ? 'editor-view-coupled' : 'editor-view-page';
@@ -20,9 +20,9 @@ class View extends Component {
                     }
                     else if (element.type == 'image') {
                         return (
-                        <div className='image'>
-                        <img src={element.value}></img> 
-                        </div>)
+                            <div className='image'>
+                                <img src={element.value}></img>
+                            </div>)
                     }
                     else if (element.type == 'paragraph') {
                         if (element.values.length == 0) {
@@ -46,6 +46,6 @@ class View extends Component {
 
         </div>)
     }
-   
+
 }
 export default View
