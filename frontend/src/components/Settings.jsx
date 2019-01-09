@@ -8,7 +8,7 @@ class Settings extends Component
     }
     render()
     {
-        var link = (this.state.url) ? 'texpen.herokuapp.com/' + this.state.url : ''
+        var link = (this.state.url) ? 'texpen.herokuapp.com/view/' + this.state.url : ''
         var urlOutput = <p className='url-output'>{link}</p>
         var Clipboard = (this.state.url) ?  <CopyToClipboard text={link}>
         <button className='clipboard'>
