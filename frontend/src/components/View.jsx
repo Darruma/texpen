@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../css/editor.css'
 import 'katex/dist/katex.min.css';
 import EquationBlock from './EquationBlock'
-import TeX from 'react-katex';
+import TeX from '@matejmazur/react-katex';
 
 class View extends Component {
     state = {

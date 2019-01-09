@@ -1,6 +1,6 @@
 import React , { Component } from 'react'
 import 'katex/dist/katex.min.css';
-import TeX from 'react-katex';
+import TeX from '@matejmazur/react-katex';
 class EquationBlock extends Component
 {
     render()
