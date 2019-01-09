@@ -20,8 +20,8 @@ class View extends Component {
                     }
                     else if (element.type == 'image') {
                         return (
-                            <div className='image'>
-                                <img src={element.value}></img>
+                            <div className='image-container'>
+                                <img className='image' src={element.value}></img>
                             </div>)
                     }
                     else if (element.type == 'paragraph') {
