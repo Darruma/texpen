@@ -41,9 +41,8 @@ class Settings extends Component
                 'Content-Type': 'application/json; charset=utf-8'
             },
             body: JSON.stringify({
-                title: this.state.title,
-                latex: this.state.content,
-                input: this.state.input,
+                title: this.props.title,
+                input: this.props.input,
                 id:pageID
             })
         })
