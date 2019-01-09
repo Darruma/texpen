@@ -29,22 +29,36 @@ class Settings extends Component
    
     saveSettings = (e) =>
     {
-        fetch("/api/editor/upload", {
-            method: "post",
+        var pageID = this.props.id
+        if(pageID == undefined)
+        {
+            console.log('undefined fam')
+            pageID = 'none'
+        }
+        fetch('api/editor/upload', {
+            method: 'POST',
             headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json; charset=utf-8'
             },
-          
             body: JSON.stringify({
-                title:this.props.title,
-                input:this.props.input
+                title: this.state.title,
+                latex: this.state.content,
+                input: this.state.input,
+                id:pageID
             })
-          }).then(res => res.json()).then(res =>
+        })
+        .then(res => res.json()).then((res) =>
+        {
+            console.log(res)
+            if(res.success)
             {
-                this.setState({url:res.url})
-            })
-         
+                this.setState({
+                    url:res.url
+                },() => console.log(this.state.url))
+            }
+        }
+
+        );
     }
 }
 export default Settings

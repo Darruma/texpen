@@ -12,12 +12,11 @@ class Editor extends Component {
         input: ''
     }
     render() {
-
         return (
             <div className='container'>
 
                 <div className='editor-container'>
-                    <Settings title={this.state.title} input={this.state.input} updateTitle={this.handleTitleChange} ></Settings>
+                    <Settings title={this.state.title} input={this.state.input} updateTitle={this.handleTitleChange} id={this.props.match.params.id} ></Settings>
                     <div className='input'>
                         <div className='line-numbers'>
                             {Array(45).fill(0).map((element, index) => {
@@ -47,24 +46,7 @@ class Editor extends Component {
     handleSettingsModal = (e) => {
         e.preventDefault()
     }
-    uploadContent = () => {
 
-        const pageID = this.props.match.params.id;
-        if (pageID) {
-            fetch('api/editor/upload', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json; charset=utf-8'
-                },
-                body: JSON.stringify({
-                    title: this.state.title,
-                    latex: this.state.content,
-                    input: this.state.input,
-                    id: pageID
-                })
-            });
-        }
-    }
     componentDidMount() {
         var id = this.props.match.params.id;
         fetch('/api/editor/' + id)
