@@ -12,7 +12,7 @@ class Editor extends Component {
         input: ''
     }
     render() {
-        
+
         return (
             <div className='container'>
 
@@ -28,7 +28,7 @@ class Editor extends Component {
                         <textarea className='editor-box editor-input' value={this.state.input} onChange={this.onTextChange}>
                         </textarea>
                     </div>
-                        <View title={this.state.title} coupled_view={true} data={this.state.rendered}></View>
+                    <View title={this.state.title} coupled_view={true} data={this.state.rendered}></View>
                 </div>
             </div>)
     }
@@ -48,24 +48,22 @@ class Editor extends Component {
         e.preventDefault()
     }
     uploadContent = () => {
-        
+
         const pageID = this.props.match.params.id;
-        if(!pageID)
-        {
-            pageID = 'none'
+        if (pageID) {
+            fetch('api/editor/upload', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                },
+                body: JSON.stringify({
+                    title: this.state.title,
+                    latex: this.state.content,
+                    input: this.state.input,
+                    id: pageID
+                })
+            });
         }
-        fetch('api/editor/upload', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify({
-                title: this.state.title,
-                latex: this.state.content,
-                input: this.state.input,
-                id:pageID
-            })
-        });
     }
     componentDidMount() {
         var id = this.props.match.params.id;
