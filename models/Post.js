@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 const url = (process.env.MONGODB_URI) ? process.env.MONGODB_URI : 'mongodb://localhost/users'
 const db = mongoose.createConnection(url);
