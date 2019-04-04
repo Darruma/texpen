@@ -18,7 +18,6 @@ class Page extends Component {
         fetch('/api/editor/' + id)
             .then(res => res.json())
             .then(res => {
-                console.log(res)
                 if (res.success) {
                     this.setState({
                         page_title: res.title,
