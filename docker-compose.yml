@@ -2,7 +2,7 @@ version: '3'
 services:
   web:
     container_name: "Frontend"
-    build: .
+    image: darruma/texpen_web
     volumes:
       - .env:/usr/src/texpen/.env
     ports:
