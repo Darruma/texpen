@@ -6,7 +6,6 @@ import TeX from '@matejmazur/react-katex';
 
 class View extends Component {
     state = {
-        data: [],
         title: ''
     }
     render() {

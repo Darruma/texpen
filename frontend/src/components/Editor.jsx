@@ -10,13 +10,16 @@ class Editor extends Component {
             <div className='container'>
 
                 <div className='editor-container'>
-                    <Settings title={this.props.title} input={this.props.input} updateTitle={this.props.handleTitleChange} id={this.props.match.params.id} ></Settings>
+                    <Settings
+                     title={this.props.title}
+                     input={this.props.input} 
+                     updateTitle={this.props.handleTitleChange}
+                     id={this.props.id} ></Settings>
                     <div className='input'>
-                        
-                        <textarea className='editor-box editor-input' value={this.props.input} onChange={this.props.onTextChange}>
+                        <textarea className='editor-box editor-input' value={this.props.input} onChange={this.props.editorTextChange}>
                         </textarea>
                     </div>
-                    <View title={this.props.title} coupled_view={true} data={this.props.rendered}></View>
+                    <View title={this.props.title} coupled_view={true} data={this.props.data}></View>
                 </div>
             </div>)
     }

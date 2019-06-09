@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    container_name: "Frontend"
+    build: .
+    volumes:
+      - .env:/usr/src/texpen/.env
+    ports:
+      - "3006:3006"
+    restart: always
+    links:
+      - mongo
+  mongo:
+    container_name: "mongodb"
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27107"
+
+    
+

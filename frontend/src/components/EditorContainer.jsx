@@ -1,5 +1,6 @@
-import React , { Component } from 'react'
+import React, { Component } from 'react'
 import parser from '../texParser'
+import Editor from './Editor'
 class EditorContainer extends Component {
     state = {
         content: [],
@@ -7,9 +8,14 @@ class EditorContainer extends Component {
         title: '',
         input: ''
     }
-    render()
-    {
-        return (<Editor  data={this.state.rendered} input={this.state.input} editorTextChange={this.onTextChange} title={this.state.title} handleTitleChange={this.handleTitleChange}></Editor>)
+    render() {
+        return (<Editor
+            data={this.state.rendered}
+            input={this.state.input}
+            editorTextChange={this.onTextChange}
+            title={this.state.title}
+            handleTitleChange={this.handleTitleChange}
+        ></Editor>)
     }
     onTextChange = (e) => {
         e.preventDefault();
@@ -28,20 +34,23 @@ class EditorContainer extends Component {
 
     componentDidMount() {
         var id = this.props.match.params.id;
-        fetch('/api/editor/' + id)
-            .then(res => res.json())
-            .then(res => {
-                if (res.success) {
-                    this.setState({
-                        title: res.title,
-                        input: res.input,
-                        content: res.input.split("\n"),
-                        rendered: parser(res.input.split("\n"))
-                    })
-                }
-                else {
-                }
-            })
+        console.log("id " + id)
+        if (id) {
+            fetch('/api/editor/' + id)
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        this.setState({
+                            title: res.title,
+                            input: res.input,
+                            content: res.input.split("\n"),
+                            rendered: parser(res.input.split("\n"))
+                        })
+                    }
+                    else {
+                    }
+                })
+        }
     }
 
 }

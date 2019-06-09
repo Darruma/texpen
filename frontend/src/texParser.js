@@ -72,6 +72,7 @@ function parser(content)
             equation_content.push(paragraph_elements)
         }
     }
+    console.log(equation_content)
    return equation_content
 }
 
