@@ -60,7 +60,8 @@
 {
     border: 1px solid darkgrey;
     border-right: 0px;
-    border-top: 0px
+    border-top: 0px;
+
 }
 .tex-title
 {
@@ -80,6 +81,8 @@
     border-top: 0px;
     width: 40vw;
     font-family: 'Nunito', sans-serif;
+    flex:1
+
     
 }
 .editor-settings
@@ -116,7 +119,7 @@
 .input
 {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 .line-numbers
 {
@@ -130,4 +133,9 @@
     font-family: 'Nunito', sans-serif;
     text-align: right;
     font-size: 15px;
+}
+
+.input-title {
+    border: solid grey;
+    border-width: 0 0.2px;
 }

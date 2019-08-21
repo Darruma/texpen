@@ -16,8 +16,10 @@ class Editor extends Component {
                         updateTitle={this.props.handleTitleChange}
                         id={this.props.id} ></Settings>
                     <div className='input'>
-                        <div className='tex-title'>{this.props.title}</div>
-                        <textarea className=' editor-input' value={this.props.input} onChange={this.props.editorTextChange}>
+                       { this.props.title && <div className='input-title'> 
+                        <p className='tex-title'>{this.props.title}</p>
+                        </div>}
+                        <textarea className='editor-input' value={this.props.input} onChange={this.props.editorTextChange}>
                         </textarea>
                     </div>
                     <View title={this.props.title} coupled_view={true} data={this.props.data}></View>
