@@ -1,17 +1,19 @@
 function parser(content)
 {
+    console.log(content)
     var equation_content = []
     for (var i = 0; i < content.length; i++) {
 
-        if (content[i] == "\\block") {
+        if (content[i].replace(/\s+/, "") == "#block") {
             equation_content.push(
                 {
                     type: 'block',
                     value:content[i+1]
                 })
-            i = i + 2
+            i = i + 1
+            continue
         }
-        else if(content[i] == '\\image')
+        else if(content[i].replace(/\s+/, "")  == '#image')
         {
             equation_content.push(
                 {
@@ -19,7 +21,8 @@ function parser(content)
                     value:content[i+1]
                 }
             )
-            i = i + 2
+            i = i + 1
+            continue
         }
         else {
             // Parse inline text here
