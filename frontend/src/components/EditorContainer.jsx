@@ -5,8 +5,9 @@ class EditorContainer extends Component {
     state = {
         content: [],
         rendered: [],
-        title: '',
-        input: ''
+        title: 'Edit Me',
+        input: '',
+        
     }
     render() {
         return (<Editor
@@ -25,8 +26,10 @@ class EditorContainer extends Component {
         });
 
     }
-    handleTitleChange = (value) => {
-        this.setState({ title: value });
+    
+    handleTitleChange = (e) => {
+        console.log(e)
+        this.setState({ title: e.target.value });
     }
     handleSettingsModal = (e) => {
         e.preventDefault()

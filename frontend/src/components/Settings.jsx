@@ -8,7 +8,7 @@ class Settings extends Component
     }
     render()
     {
-        var link = (this.state.url) ? 'texpen.darruma.xyz/view/' + this.state.url : ''
+        var link = (this.state.url) ? 'texpen.umairdarr.dev/' + this.state.url : ''
         var urlOutput = <p className='url-output'>{link}</p>
         var Clipboard = (this.state.url) ?  <CopyToClipboard text={link}>
         <button className='clipboard'>
@@ -17,11 +17,7 @@ class Settings extends Component
         </CopyToClipboard> : ''
         return(
         <div className='editor-settings editor-box title-input'>
-            <p className='title'>Change Title</p> 
-                <input onChange={(e)=>this.props.updateTitle(e.target.value)} 
-                className='title-input-block'>
-                </input>
-            <button onClick={this.saveSettings} className='save'>Save</button>
+             <button onClick={this.saveSettings} className='save'>Save</button>
             {Clipboard}
             {urlOutput}
         </div>)
@@ -32,7 +28,6 @@ class Settings extends Component
         var pageID = this.props.id
         if(pageID == undefined)
         {
-            console.log('undefined fam')
             pageID = 'none'
         }
         fetch('api/editor/upload', {

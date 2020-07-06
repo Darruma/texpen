@@ -1,82 +1,62 @@
-function parser(content)
-{
-    console.log(content)
-    var equation_content = []
-    for (var i = 0; i < content.length; i++) {
+import React from 'react'
+import './css/editor.css'
+import 'katex/dist/katex.min.css';
+import TeX from '@matejmazur/react-katex';
 
-        if (content[i].replace(/\s+/, "") == "#block") {
-            equation_content.push(
-                {
-                    type: 'block',
-                    value:content[i+1]
-                })
-            i = i + 1
-            continue
-        }
-        else if(content[i].replace(/\s+/, "")  == '#image')
-        {
-            equation_content.push(
-                {
-                    type:'image',
-                    value:content[i+1]
-                }
-            )
-            i = i + 1
-            continue
-        }
-        else {
-            // Parse inline text here
-            var paragraph = content[i];
-            var paragraph_elements = {
-                type:'paragraph',
-                values:[]
-            }
-            for (var j = 0; j < paragraph.length; j++) {
-                var currentIndex = j
-                if (paragraph[currentIndex] == '$') {
-                    currentIndex = currentIndex + 1
-                    var eq_text = ''
-                    while (paragraph[currentIndex] != '$' && currentIndex < paragraph.length) {
 
-                        eq_text = eq_text + paragraph[currentIndex];
-                        currentIndex += 1
-                    }
-                    if (eq_text) {
-                        j = currentIndex
-                        paragraph_elements.values.push(
-                            {
-                                type: 'inline_equation',
-                                value: eq_text
-                            }
-                        )
-                    }
-                }
-                else {
-                    var in_text = ''
-
-                    while (paragraph[currentIndex] != '$' && currentIndex < paragraph.length) {
-                        in_text = in_text + paragraph[currentIndex];
-                        currentIndex += 1
-                    }
-
-                    if (in_text) {
-                        j = currentIndex - 1
-                        var inline_classname = (content[i - 1] == "") ? 'inline-text' : ""
-                        paragraph_elements.values.push(
-                            {
-                                type: 'inline_text',
-                                css:inline_classname,
-                                value: in_text
-                            }
-                        )
-                    }
-                }
-            }
-            equation_content.push(paragraph_elements)
-        }
+function parse_line(line) {
+    let content = []
+    let re = /\$(.*?)\$/g
+	let matches = []	 
+	let match
+	while ((match = re.exec(line)) != null) {
+		matches.push(match)
+	}
+    if(matches.length === 0) {
+        return [<div>{line}</div>]
     }
-    console.log(equation_content)
-   return equation_content
+    let i = 0
+    let currentIndex = 0
+    while ( i < matches.length ) {
+        let m = matches[i]
+        let slice = line.slice(currentIndex,m.index) 
+        currentIndex = m.index + m[0].length
+        if(slice !== "") {
+            content.push(<div style={{ display: 'inline-block',paddingLeft: "4px",paddingRight:"4px" }}>{slice}</div>)
+        }
+        content.push(<TeX math={m[1]}/>)
+        i = i + 1
+    }
+    content.push(<div style={{ display: 'inline-block',paddingLeft: "4px",paddingRight:"4px" }}>{line.slice(currentIndex)}</div>)
+    
+    return content
 }
 
-export default parser
+export default function parser(content)
+{
+    let output = []
+    for(let i = 0; i < content.length; i++) {
+        let line = content[i]
+		if (line.replace(/\s/g, '') === "#block") {
+            output.push(<TeX math={content[i+1]} block/>)
+            i = i + 1
+            continue
+        }
+		else if (line.replace(/\s/g,'') === "#image") {
+            output.push(<img className="image" src={content[i+1]} alt={"block_image"}/>)
+            i = i + 1
+            continue
+        }
+        else if (line === "") {
+            output.push(<div style={{"paddingTop" : "10px"}}></div>)
+         }
+        
+        else {
+            let inline_elements = parse_line(line)
+            console.log(inline_elements)
+            output = [...output,...inline_elements] 
+         }
+    }
+   return output
+}
+

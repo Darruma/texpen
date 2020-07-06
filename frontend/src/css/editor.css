@@ -58,7 +58,7 @@
 }
 .editor-box
 {
-    border: 1px solid darkgrey;
+    border: 1px solid black;
     border-right: 0px;
     border-top: 0px;
 
@@ -67,6 +67,7 @@
 {
     text-align: center;
     font-size: 30px;
+    margin: 0 auto;
     font-family: 'Nunito', sans-serif;
 }
 
@@ -78,11 +79,11 @@
     outline: none;
     padding: 20px;
     box-sizing: border-box; 
-    border-top: 0px;
     width: 40vw;
     font-family: 'Nunito', sans-serif;
-    flex:1
-
+    flex:1;
+    border: 1px solid black;
+    border-top: 0px;
     
 }
 .editor-settings
@@ -135,7 +136,12 @@
     font-size: 15px;
 }
 
-.input-title {
-    border: solid grey;
-    border-width: 0 0.2px;
+.paragraph {
+    padding-top:25px
 }
+.input-title {
+    border: 1px solid black;
+    border-width: 0 1px;
+    padding-top: 20px;
+    text-align: center;
+ }
