@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently --kill-others-on-fail \"nodemon server.js\" \" cd ./frontend && npm run start\""
+    "dev": "concurrently --kill-others-on-fail  \"nodemon server.js\" \" cd ./frontend && npm run start\"",
+    "mongo": "docker run -d -p 27017:27017 -v /data:./data/db --name mongodb_1 mongo"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,7 @@
     "concurrently": "^4.1.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "mongoose": "^5.7.5",
+    "mongoose": "^5.9.24",
     "nodemon": "^1.18.9",
     "randomstring": "^1.1.5"
   }
